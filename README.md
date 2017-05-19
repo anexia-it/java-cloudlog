@@ -13,10 +13,20 @@ There are two connection types:
 ## Get started with Maven
 
 ```sh
+<repositories>
+    <repository>
+        <id>anexia</id>
+        <url>https://raw.github.com/anexia-it/maven-repo/master/</url>
+        <snapshots>
+            <enabled>true</enabled>
+            <updatePolicy>always</updatePolicy>
+        </snapshots>
+    </repository>
+</repositories>
 <dependency>
     <groupId>at.anexia.cloudlog</groupId>
     <artifactId>client</artifactId>
-    <version>1.0</version>
+    <version>0.1</version>
 </dependency>
 ```
 
