@@ -23,6 +23,7 @@ There are two connection types:
         </snapshots>
     </repository>
 </repositories>
+
 <dependency>
     <groupId>at.anexia.cloudlog</groupId>
     <artifactId>client</artifactId>
