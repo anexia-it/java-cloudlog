@@ -1,6 +1,8 @@
 java-cloudlog
 ===
 
+[![Build Status](https://travis-ci.org/anexia-it/java-cloudlog.svg?branch=master)](https://travis-ci.org/anexia-it/java-cloudlog)
+
 java-cloudlog is a client library for Anexia CloudLog.
 
 Currently it only provides to push events to CloudLog. Querying is possible in a future release.
