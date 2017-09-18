@@ -29,8 +29,8 @@ public class Client {
     private String trustStorePassword;
     private String token;
 
-    private String brokers = "anx-bdp-broker0401.bdp.anexia-it.com:443,anx-bdp-broker0402.bdp.anexia-it.com:443,anx-bdp-broker0403.bdp.anexia-it.com:443";
-    private String api = "https://anx-bdp-api0401.bdp.anexia-it.com";
+    private String brokers = "kafka0401.bdp.anexia-it.com:8443";
+    private String api = "https://api0401.bdp.anexia-it.com";
 
     private Producer<String, String> producer;
     private JsonParser jsonParser;
@@ -93,7 +93,6 @@ public class Client {
 
         httpClient = HttpClientBuilder.create().build();
         httpPost = new HttpPost(api + "/v1/index/" + index + "/data");
-        System.out.println(api + "/v1/index/" + index + "/data");
         httpPost.addHeader("Content-type", "application/json");
         httpPost.addHeader("Authorization", token);
 
@@ -171,8 +170,6 @@ public class Client {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         props.put("retries", 10);
 
-        System.out.println(props);
-
         producer = new KafkaProducer<>(props);
 
     }
@@ -198,7 +195,6 @@ public class Client {
 
             for(String event : events) {
                 event = addMetadata(event, timestamp);
-                System.out.println(event);
                 producer.send(new ProducerRecord<>(index, null, event), (RecordMetadata recordMetadata, Exception e) -> {
                     if (e != null) {
                         e.printStackTrace();
@@ -227,7 +223,6 @@ public class Client {
         try {
             httpPost.setEntity(new StringEntity("{ \"records\" : "+events+"}"));
             HttpResponse response = httpClient.execute(httpPost);
-            System.out.println(response.getStatusLine().getStatusCode());
         } catch (Exception e) {
             e.printStackTrace();
         }
